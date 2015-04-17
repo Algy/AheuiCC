@@ -6,7 +6,7 @@ from argparse import ArgumentParser
 from distutils.ccompiler import new_compiler, CCompiler
 from tempfile import NamedTemporaryFile
 from subprocess import Popen
-from compile import Compiler
+from aheui.compile import Compiler
 from gentac import TacGenerator
 from genc import CCodeGenerator
 
@@ -42,7 +42,7 @@ if __name__ == "__main__":
     with open(option.source_file, "r") as f:
         c = Compiler()
         ah_src = f.read()
-        c.compile(ah_src)
+        c.compile(ah_src.decode('utf-8'))
         c.optimize2()
         asm_str = c.write_asm()
 
